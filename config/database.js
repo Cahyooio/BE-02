@@ -5,10 +5,10 @@
 
 /** Destruct environment variable to get database configuration */
 const {
-  DB_USERNAME = null,
-  DB_PASSWORD = null,
+  DB_USERNAME = 'postgres',
+  DB_PASSWORD = 'cahyooio',
   DB_HOST = "127.0.0.1",
-  DB_NAME = "authentication_bcrypt",
+  DB_NAME = "Backend_Secondhand",
 } = process.env;
 
 module.exports = {

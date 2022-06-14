@@ -20,7 +20,8 @@ function encryptPassword(password) {
   });
 }
 
-function checkPassword(encryptedPassword, password) {
+
+function checkPassword(password) {
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, encryptedPassword, (err, isPasswordCorrect) => {
       if (!!err) {
@@ -35,11 +36,13 @@ function checkPassword(encryptedPassword, password) {
 
 module.exports = {
   async register(req, res) {
+    const nama = req.body.nama;
     const email = req.body.email;
-    const encryptedPassword = await encryptPassword(req.body.password);
-    const user = await User.create({ email, encryptedPassword });
+    const password = await encryptPassword(req.body.password);
+    const user = await User.create({ nama, email, password });
     res.status(201).json({
       id: user.id,
+      nama: user.nama,
       email: user.email,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
