@@ -20,6 +20,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      refresh_token: {
+        type: DataTypes.TEXT,
+      },
       alamat: {
         allowNull: true,
         type: Sequelize.STRING,

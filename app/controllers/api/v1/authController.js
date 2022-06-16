@@ -72,7 +72,7 @@ module.exports = {
     );
     const token = createToken({
       id: user.id,
-      name : user.name,
+      nama : user.nama,
       email: user.email,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt
@@ -82,6 +82,8 @@ module.exports = {
       res.status(401).json({ message: "Password salah!" });
       return;
     }
+    //nanti tambahkan di { secure : true} setelah deploy
+    res.cookie('jwt',token, {httpOnly : true, maxAge:24*60*60*10000})
     res.status(201).json({
       id: user.id,
       email: user.email,
@@ -90,4 +92,7 @@ module.exports = {
       updatedAt: user.updatedAt,
     });
   },
+  logout(req,res){
+    res.cookie('jwt','',{maxAge:1})
+  },  
 };
