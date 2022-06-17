@@ -12,6 +12,9 @@ apiRouter.post("/api/v1/login", controllers.api.v1.authController.login);
 apiRouter.post("/api/v1/register", controllers.api.v1.authController.register);
 apiRouter.get("/api/v1/logout", controllers.api.v1.authController.logout);
 
+apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
+apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);
+
 apiRouter.use(controllers.api.main.onLost);
 apiRouter.use(controllers.api.main.onError);
 
