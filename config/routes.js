@@ -14,6 +14,10 @@ apiRouter.get("/api/v1/logout", controllers.api.v1.authController.logout);
 
 apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
 apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);
+apiRouter.get("/api/v1/getproduk/:id", controllers.api.v1.produkController.getProdukById);
+apiRouter.post("/api/v1/updateproduk/:id", controllers.api.v1.produkController.updateProduk);
+apiRouter.get("/api/v1/deleteproduk/:id", controllers.api.v1.produkController.deleteProduk);
+
 
 apiRouter.use(controllers.api.main.onLost);
 apiRouter.use(controllers.api.main.onError);
