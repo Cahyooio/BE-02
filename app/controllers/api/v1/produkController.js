@@ -16,25 +16,30 @@ module.exports = {
  async getAllProduk (req, res){
     try {
         let produk = await Produk.findAll();
+        if (!produk) {
+            return res.status(404).json('Product not found');
+        }
         return res.status(200).json(produk);
     } catch (err) {
-        return res.status(404);
+        return res.status(500).json({msg: err.message});
     }
 },
 async getProdukById (req, res){
     try {
         const produk_id = req.params.id;
         const produk = await Produk.findOne({where: {id : produk_id}});
-        return res.status(201).json(produk);
-        // get produk id not found masih belum kepanggil
+        console.log (produk);
+        if (!produk) {
+            return res.status(404).json('Product not found');
+        }
+        return res.status(200).json(produk);
     } catch (error) {
-        return res.status(404).json('NOt found');
+        return res.status(500).json('server error');
     }
 },
 async updateProduk (req, res){
     try {
         const produk_id = req.params.id;
-        // const { nama, hargaproduk, deskripsi, kategori, foto1, foto2, foto3, foto4} = req.body;
         const updateproduk = await Produk.update ({
             namaproduk:req.body.namaproduk,
             hargaproduk:req.body.hargaproduk,
@@ -55,12 +60,28 @@ async updateProduk (req, res){
 async deleteProduk (req, res){
     try {
         const produk_id = req.params.id;
-        const deleteproduk = await Produk.destroy({
+        await Produk.destroy({
             where :{id : produk_id}
         })
-        return res.status(204).json('produk deleted')
+        return res.status(204).json('hapus berhasil')
     } catch (error) {
-        return res.status(500);
+        return res.status(422).json(error);
     }
+    // respon produk notfound & berhasil dihapus belum tampil
+
+    
+    // const produk_id = req.params.id;
+    //  await Produk.destroy({
+    //             where :{id : produk_id}
+    //         })
+    //         .then (()=>{res.status (204).json({
+    //             status: "deleted." }
+            
+    //   )}).catch((err) => {
+    //     res.status(422).json({
+    //       status: "FAIL",
+    //       message: err.message,
+    //     });
+    //   });
 }
     }
