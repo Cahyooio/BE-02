@@ -5,6 +5,7 @@
  const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { User } = require("../../../models");
+const cloudinary = require("../../../../config/cloudinary");
 const SALT = 10;
 
 function encryptPassword(password) {
@@ -91,6 +92,40 @@ module.exports = {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     });
+  },
+  async uploadFotoUser(req,res){
+    const fileBase64 = req.file.buffer.toString("base64");
+    const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+    const tanggal = Date.now();
+    const namaFile = "Gambar User "+ tanggal;
+
+    cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaFile}, function (err, result) {
+      if (!!err) {
+        console.log(err);
+        return res.status(400).json({
+          message: "Gagal upload file!",
+        });
+      }
+      console.log(result.url)
+    });
+  },
+  async updateInfoUser(req, res){
+    try {
+      const user_id = req.params.id;
+      await User.update({
+        nama:req.body.nama,
+        kota:req.body.kota,
+        alamat:req.body.alamat,
+        nohp:req.body.nohp,
+        profilimg:req.body.profilimg
+      },{
+        where : {id: user_id}
+      })
+      return res.status(202).json('update profil berhasil')
+    } catch (error) {
+      return res.status(500);
+    }
+
   },
   logout(req,res){
     res.cookie('jwt','',{maxAge:1})
