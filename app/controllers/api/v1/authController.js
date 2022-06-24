@@ -101,12 +101,16 @@ module.exports = {
 
     cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaFile}, function (err, result) {
       if (!!err) {
-        console.log(err);
+        console.log(err)
         return res.status(400).json({
-          message: "Gagal upload file!",
-        });
+          message: "Gagal upload file!"
+        })
       }
       console.log(result.url)
+      res.status(201).json({
+        message: "Upload image berhasil",
+        url: result.url,
+      })
     });
   },
   async updateInfoUser(req, res){
