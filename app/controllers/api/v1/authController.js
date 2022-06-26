@@ -106,10 +106,32 @@ module.exports = {
           message: "Gagal upload file!"
         })
       }
+      console.log(namaFile)
       console.log(result.url)
       res.status(201).json({
         message: "Upload image berhasil",
         url: result.url,
+        namafile : namaFile,
+      })
+    });
+  },
+  async uploadReFotoUser(req,res){
+    const fileBase64 = req.file.buffer.toString("base64");
+    const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+    const namaReup = req.body.namafilebaru
+
+    cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaReup}, function (err, result) {
+      if (!!err) {
+        console.log(err)
+        return res.status(400).json({
+          message: "Gagal upload file!"
+        })
+      }
+      console.log(result.url)
+      res.status(201).json({
+        message: "Upload image berhasil",
+        url: result.url,
+        namafile : namaReup,
       })
     });
   },
