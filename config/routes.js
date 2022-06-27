@@ -20,6 +20,10 @@ apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAll
 apiRouter.get("/api/v1/getproduk/:id", controllers.api.v1.produkController.getProdukById);
 apiRouter.post("/api/v1/updateproduk/:id", controllers.api.v1.produkController.updateProduk);
 apiRouter.delete("/api/v1/deleteproduk/:id", controllers.api.v1.produkController.deleteProduk);
+apiRouter.get("/api/v1/getallarsip", controllers.api.v1.produkController.lihatArsip);
+
+apiRouter.post("/api/v1/fotoproduksatu", uploadOnMemory.single("picture"), controllers.api.v1.produkController.uploadFotoProdukSatu);
+apiRouter.post("/api/v1/refotoproduksatu", uploadOnMemory.single("picture"), controllers.api.v1.produkController.uploadReFotoProdukSatu);
 
 
 apiRouter.use(controllers.api.main.onLost);
