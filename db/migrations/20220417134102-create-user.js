@@ -34,6 +34,10 @@ module.exports = {
       },
       profilimg: {
         allowNull: true,
+        type: Sequelize.TEXT,
+      },
+      namaprofilimg: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       createdAt: {

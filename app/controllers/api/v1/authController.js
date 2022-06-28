@@ -75,8 +75,11 @@ module.exports = {
       id: user.id,
       nama : user.nama,
       email: user.email,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      alamat:user.alamat,
+      nohp:user.nohp,
+      kota:user.kota,
+      profilimg:user.profilimg,
+      namaprofilimg:user.namaprofilimg
     })
 
     if (!isPasswordCorrect) {
@@ -143,7 +146,8 @@ module.exports = {
         kota:req.body.kota,
         alamat:req.body.alamat,
         nohp:req.body.nohp,
-        profilimg:req.body.profilimg
+        profilimg:req.body.profilimg,
+        namaprofilimg:req.body.namaprofilimg
       },{
         where : {id: user_id}
       })
@@ -152,8 +156,5 @@ module.exports = {
       return res.status(500);
     }
 
-  },
-  logout(req,res){
-    res.cookie('jwt','',{maxAge:1})
-  },  
+  }, 
 };

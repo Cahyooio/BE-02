@@ -20,6 +20,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER
       },
+      iduser: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       kategori: {
         allowNull: false,
         type: Sequelize.STRING
@@ -36,17 +40,33 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
+      namafoto1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       foto2: {
         allowNull: true,
         type: Sequelize.TEXT
+      },
+      namafoto2: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       foto3: {
         allowNull: true,
         type: Sequelize.TEXT
       },
+      namafoto3: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       foto4: {
         allowNull: true,
         type: Sequelize.TEXT
+      },
+      namafoto4: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: true,

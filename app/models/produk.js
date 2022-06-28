@@ -17,13 +17,18 @@ module.exports = (sequelize, DataTypes) => {
     namaproduk: DataTypes.STRING,
     hargaproduk: DataTypes.INTEGER,
     hargaterjual: DataTypes.INTEGER,
+    iduser: DataTypes.INTEGER,
     kategori: DataTypes.STRING,
     deskripsi: DataTypes.TEXT,
     statusproduk: DataTypes.STRING,
     foto1: DataTypes.TEXT,
+    namafoto1: DataTypes.STRING,
     foto2: DataTypes.TEXT,
+    namafoto2: DataTypes.STRING,
     foto3: DataTypes.TEXT,
-    foto4: DataTypes.TEXT
+    namafoto3: DataTypes.STRING,
+    foto4: DataTypes.TEXT,
+    namafoto4: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Produk',
