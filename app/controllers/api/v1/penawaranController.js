@@ -43,7 +43,7 @@ module.exports={
         }
     },
     // untuk buyer
-    async penawaranDiterima(req,res){
+    async responPenawaran(req,res){
         try {
             
         } catch (error) {
@@ -51,7 +51,7 @@ module.exports={
         }
     },
     //untuk buyer
-    async totalPenawaranDiterima(req,res){
+    async totalResponPenawaran(req,res){
         try {
             
         } catch (error) {
