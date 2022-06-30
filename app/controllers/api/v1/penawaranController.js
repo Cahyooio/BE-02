@@ -67,8 +67,10 @@ module.exports = {
         try {
             const idpenawaran = req.params.idpenawaran;
             let penawaran = await Penawaran.findOne(
-                { where: { id: idpenawaran } }
-            );
+                { where: { id: idpenawaran } ,
+                include: 'produk' ,
+                attributes: {exclude :['updatedAt', 'createdAt']}
+        });
             if (!penawaran) {
                 return res.status(404).json("Penawaran not found");
             }
