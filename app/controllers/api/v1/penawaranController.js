@@ -1,7 +1,5 @@
 const { Penawaran } = require('../../../models');
-const { Op } = require('sequelize');
-const penawaran = require('../../../models/penawaran');
-const { array } = require('../../../middleware/uploadOnMemory');
+const Sequelize = require('sequelize')
 
 module.exports = {
     //dari buyer untuk seller
@@ -29,37 +27,54 @@ module.exports = {
         } catch (error) {
             res
                 .status(422)
-                .json({ msg: err.message, pesan: "'Penawaran Gagal Diupload'" });
+                .json({ msg: error.message, pesan: "'Penawaran Gagal Diupload'" });
         }
     },
     // untuk seller, seller by idseller
-    async listPenawaran(req, res) {
+    async listProdukDiminati(req,res){
         try {
             const idpenjual = req.params.idseller;
+            let diminati = await Penawaran.findAll(
+                {
+                    attributes: [
+                        [Sequelize.fn('DISTINCT', Sequelize.col('idproduk')) ,'idproduk'],'namaproduk'
+                    ]
+                },{
+                    where : { idseller: idpenjual }
+                }
+            )
+            return res.status(200).json(diminati);
+        } catch (error) {
+            return res.status(500).json({ msg: error.message });
+        }
+    },
+    async listPenawaran(req, res) {
+        try {
+            const produk_id = req.params.idproduk;
             let penawaran = await Penawaran.findAll(
-                { where: { idseller: idpenjual } }
+                { where: { idproduk: produk_id } }
             );
             if (!penawaran) {
                 return res.status(404).json("Penawaran not found");
             }
             return res.status(200).json(penawaran);
         } catch (error) {
-            return res.status(500).json({ msg: err.message });
+            return res.status(500).json({ msg: error.message });
         }
     },
     // untuk seller
     async totalListPenawaran(req, res) {
         try {
-            const idpenjual = req.params.idseller;
+            const produk_id = req.params.idproduk;
             let totalpenawaran = await Penawaran.count(
-                { where: { idseller: idpenjual } }
+                { where: { idproduk: produk_id } }
             );
             if (!totalpenawaran) {
                 return res.status(404).json("Penawaran not found");
             }
             return res.status(200).json(totalpenawaran);
         } catch (error) {
-            return res.status(500).json({ msg: err.message });
+            return res.status(500).json({ msg: error.message });
         }
     },
     // untuk seller
@@ -76,7 +91,7 @@ module.exports = {
             }
             return res.status(200).json(penawaran);
         } catch (error) {
-            return res.status(500).json({ msg: err.message });
+            return res.status(500).json({ msg: error.message });
         }
     },
     //untuk seller
