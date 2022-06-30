@@ -90,7 +90,7 @@ module.exports = {
     } catch (error) {
       res
         .status(422)
-        .json({ msg: err.message, pesan: "'Produk Gagal Diupload'" });
+        .json({ msg: error.message, pesan: "'Produk Gagal Diupload'" });
     }
   },
   async getAllProduk(req, res) {
