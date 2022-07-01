@@ -18,7 +18,9 @@ apiRouter.get("/api/v1/getproduk/:id", controllers.api.v1.produkController.getPr
 apiRouter.get("/api/v1/getprodukdijual/:penjualid", controllers.api.v1.produkController.getProdukDijual);//untuk produk yang dijual oleh user
 apiRouter.post("/api/v1/updateproduk/:id", controllers.api.v1.produkController.updateProduk);
 apiRouter.delete("/api/v1/deleteproduk/:id", controllers.api.v1.produkController.deleteProduk);
-apiRouter.get("/api/v1/getallarsip/:penjualid", controllers.api.v1.produkController.lihatArsip);//untuk arsip produk yang dihapus oleh user sebagai penjual
+apiRouter.get("/api/v1/gethistoryseller/:penjualid", controllers.api.v1.produkController.getHistorySeller);//untuk arsip produk yang dihapus oleh user sebagai penjual
+apiRouter.get("/api/v1/gethistorybuyer/:pembeliid", controllers.api.v1.produkController.getHistoryBuyer);//untuk arsip produk yang dihapus oleh user sebagai penjual
+apiRouter.post("/api/v1/bataltransaksi/:id", controllers.api.v1.produkController.batalTranksaksi);
 
 apiRouter.post("/api/v1/fotoproduksatu", uploadOnMemory.single("picture"), controllers.api.v1.produkController.uploadFotoProdukSatu);
 apiRouter.post("/api/v1/refotoproduksatu", uploadOnMemory.single("picture"), controllers.api.v1.produkController.uploadReFotoProdukSatu);

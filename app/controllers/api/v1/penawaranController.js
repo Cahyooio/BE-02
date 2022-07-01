@@ -1,4 +1,4 @@
-const { Penawaran } = require('../../../models');
+const { Penawaran,Produk } = require('../../../models');
 const Sequelize = require('sequelize')
 
 module.exports = {
@@ -98,14 +98,29 @@ module.exports = {
     async updatePenawaran(req, res) {
         try {
             const penawaran_id = req.params.idpenawaran;
+            const status_tawar = req.body.statustawar
+            const id_buyer = req.body.idbuyer
+            const id_produk = req.body.idproduk
             await Penawaran.update(
                 {
-                    statustawar: req.body.statustawar,
+                    statustawar: status_tawar,
                 },
                 {
                     where: { id: penawaran_id },
                 }
             );
+            if(status_tawar == "diterima"){
+                await Produk.update(
+                    {
+                        statusproduk: "reserved",
+                        idbuyer:id_buyer
+                    },
+                    {
+                        where : {id:id_produk}
+                    }
+                )
+            }
+            
             return res.status(201).json("penawaran updated.");
         } catch (error) {
             return res.status(500).json({ msg: error.message });

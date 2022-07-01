@@ -181,13 +181,45 @@ module.exports = {
     //     });
     //   });
   },
-  async lihatArsip(req, res) {
+  async batalTranksaksi(req,res){
+    try {
+      const produk_id = req.params.id;
+      await Produk.update({
+        statusproduk : null,
+        idbuyer : null
+      },{
+        where : { id : produk_id }
+      })
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  async getHistorySeller(req, res) {
     try {
     const penjual_id = req.params.penjualid;
       let produk = await Produk.findAll({
         where: {
           deletedAt: { [Op.ne]: null },
           iduser: penjual_id
+          
+        },
+        paranoid: false,
+      });
+      if (!produk) {
+        return res.status(404).json("Product Archive not found");
+      }
+      return res.status(200).json(produk);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  async getHistoryBuyer(req, res) {
+    try {
+    const pembeli_id = req.params.pembeliid;
+      let produk = await Produk.findAll({
+        where: {
+          deletedAt: { [Op.ne]: null },
+          iduser: pembeli_id
           
         },
         paranoid: false,

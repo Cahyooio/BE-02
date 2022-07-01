@@ -20,7 +20,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER
       },
-      iduser: {
+      idseller: {
         allowNull: true,
         type: Sequelize.INTEGER
       },
@@ -31,10 +31,6 @@ module.exports = {
       deskripsi: {
         allowNull: false,
         type: Sequelize.TEXT
-      },
-      statusproduk: {
-        allowNull: true,
-        type: Sequelize.STRING
       },
       foto1: {
         allowNull: false,
@@ -67,6 +63,14 @@ module.exports = {
       namafoto4: {
         allowNull: true,
         type: Sequelize.STRING
+      },
+      statusproduk: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      idbuyer: {
+        allowNull: true,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: true,
