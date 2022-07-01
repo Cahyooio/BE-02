@@ -36,10 +36,7 @@ module.exports = {
             const idpenjual = req.params.idseller;
             let diminati = await Penawaran.findAll(
                 {
-                    attributes: [
-                        [Sequelize.fn('DISTINCT', Sequelize.col('idproduk')) ,'idproduk'],'namaproduk'
-                    ]
-                },{
+                    attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('idproduk')) ,'idproduk'],'namaproduk'],
                     where : { idseller: idpenjual }
                 }
             )
