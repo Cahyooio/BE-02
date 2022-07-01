@@ -23,6 +23,9 @@ module.exports = {
                 hargatawar,
                 statustawar,
             });
+            await Produk.update({
+                statusproduk: "ditawar"
+            })
             return res.status(201).json(newPenawaran);
         } catch (error) {
             res
@@ -34,10 +37,9 @@ module.exports = {
     async listProdukDiminati(req,res){
         try {
             const idpenjual = req.params.idseller;
-            let diminati = await Penawaran.findAll(
+            let diminati = await Produk.findAll(
                 {
-                    attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('idproduk')) ,'idproduk'],'namaproduk'],
-                    where : { idseller: idpenjual }
+                    where : { idseller: idpenjual, statusproduk:"ditawar" }
                 }
             )
             return res.status(200).json(diminati);
@@ -62,9 +64,9 @@ module.exports = {
     // untuk seller
     async totalListPenawaran(req, res) {
         try {
-            const produk_id = req.params.idproduk;
+            const idpenjual = req.params.idseller;
             let totalpenawaran = await Penawaran.count(
-                { where: { idproduk: produk_id } }
+                { where: { idseller: idpenjual } }
             );
             if (!totalpenawaran) {
                 return res.status(404).json("Penawaran not found");

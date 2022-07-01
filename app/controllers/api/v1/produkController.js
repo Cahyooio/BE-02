@@ -107,7 +107,7 @@ module.exports = {
   async getProdukDijual(req, res) {
     try {
         const penjual_id = req.params.penjualid;
-        const produk = await Produk.findOne({ where: { iduser: penjual_id } });
+        const produk = await Produk.findOne({ where: { idseller: penjual_id } });
         console.log(produk);
         if (!produk) {
           return res.status(404).json("Product not found");
@@ -200,7 +200,7 @@ module.exports = {
       let produk = await Produk.findAll({
         where: {
           deletedAt: { [Op.ne]: null },
-          iduser: penjual_id
+          idseller: penjual_id
           
         },
         paranoid: false,
@@ -219,7 +219,7 @@ module.exports = {
       let produk = await Produk.findAll({
         where: {
           deletedAt: { [Op.ne]: null },
-          iduser: pembeli_id
+          idbuyer: pembeli_id
           
         },
         paranoid: false,
