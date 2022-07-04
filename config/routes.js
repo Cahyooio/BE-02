@@ -6,6 +6,7 @@ const apiRouter = express.Router();
 /**
  * Authentication Resource
  * */
+apiRouter.get("/", controllers.api.v1.homeController.home);
 apiRouter.post("/api/v1/login", controllers.api.v1.authController.login);
 apiRouter.post("/api/v1/register", controllers.api.v1.authController.register);
 apiRouter.post("/api/v1/updatefotouser", uploadOnMemory.single("picture"), controllers.api.v1.authController.uploadFotoUser);
