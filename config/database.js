@@ -7,8 +7,8 @@
 const {
   DB_USERNAME = '',
   DB_PASSWORD = '',
-  DB_HOST = "",
-  DB_NAME = "",
+  DB_HOST = '',
+  DB_NAME = '',
 } = process.env;
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
     password: DB_PASSWORD,
     database: `${DB_NAME}`,
     host: DB_HOST,
-    dialect: "postgres",
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         require: true,
@@ -30,7 +30,7 @@ module.exports = {
     password: DB_PASSWORD,
     database: `${DB_NAME}`,
     host: DB_HOST,
-    dialect: "postgres",
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         require: true,
@@ -44,7 +44,7 @@ module.exports = {
     password: DB_PASSWORD,
     database: `${DB_NAME}`,
     host: DB_HOST,
-    dialect: "postgres",
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         require: true,
