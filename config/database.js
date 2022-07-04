@@ -40,6 +40,7 @@ module.exports = {
   },
   
   production: {
+    use_env_variable: 'DATABASE_URL',
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: `${DB_NAME}`,
