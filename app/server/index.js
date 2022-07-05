@@ -9,6 +9,7 @@ const router = require("../../config/routes");
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { none } = require("../middleware/uploadOnMemory");
 
 dotenv.config();
 
@@ -22,6 +23,17 @@ const corsOptions ={
 }
 app.set("trust proxy", 1);
 app.use(cors(corsOptions));
+app.use(session({
+    name:"secondhand_kel2",
+    secret:"bennysakawnganublablaehehkimochi",
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        secure: true,
+        sameSite:'none',
+        httpOnly: true,
+    }
+}))
 
 /** Install JSON request parser */
 app.use(express.urlencoded({ extended: true }))
