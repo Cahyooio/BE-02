@@ -22,18 +22,18 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 app.set("trust proxy", 1);
-// app.use(cors(corsOptions));
-app.use(session({
-    name:"secondhand_kel2",
-    secret:"bennysakawnganublablaehehkimochi",
-    resave: false,
-    saveUninitialized: true,
-    cookie:{
-        secure: true,
-        sameSite:'none',
-        httpOnly: true,
-    }
-}),cors(corsOptions))
+app.use(cors(corsOptions));
+// app.use(session({
+//     name:"secondhand_kel2",
+//     secret:"bennysakawnganublablaehehkimochi",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie:{
+//         secure: true,
+//         sameSite:'none',
+//         httpOnly: true,
+//     }
+// }))
 
 /** Install JSON request parser */
 app.use(express.urlencoded({ extended: true }))
