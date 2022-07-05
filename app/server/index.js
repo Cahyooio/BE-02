@@ -20,6 +20,7 @@ const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
+app.set("trust proxy", 1);
 app.use(cors(corsOptions));
 
 /** Install JSON request parser */

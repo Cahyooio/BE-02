@@ -87,7 +87,7 @@ module.exports = {
       return;
     }
     //nanti tambahkan di { secure : true} setelah deploy
-    res.cookie('jwt',token, { secure : true}, {maxAge:24*60*60*10000})
+    res.cookie('jwt',token, {sameSite:"none", secure : true, maxAge:24*60*60*10000})
     res.status(201).json({
       id: user.id,
       email: user.email,
