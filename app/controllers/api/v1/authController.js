@@ -87,14 +87,15 @@ module.exports = {
       return;
     }
     //nanti tambahkan di { secure : true} setelah deploy
-    res.cookie('jwt',token, {sameSite:'none', secure : true, maxAge:24*60*60*10000})
-    res.status(201).json({
-      id: user.id,
-      email: user.email,
-      token: token, // Kita bakal ngomongin ini lagi nanti.
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    });
+    // res.cookie('jwt',token, {sameSite:'none', secure : true, maxAge:24*60*60*10000})
+    // res.status(201).json({
+    //   id: user.id,
+    //   email: user.email,
+    //   token: token, // Kita bakal ngomongin ini lagi nanti.
+    //   createdAt: user.createdAt,
+    //   updatedAt: user.updatedAt,
+    // });
+    res.status(202).json({token})
   },
   async uploadFotoUser(req,res){
     const fileBase64 = req.file.buffer.toString("base64");
