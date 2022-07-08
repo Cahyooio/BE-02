@@ -75,11 +75,6 @@ module.exports = {
       id: user.id,
       nama : user.nama,
       email: user.email,
-      alamat:user.alamat,
-      nohp:user.nohp,
-      kota:user.kota,
-      profilimg:user.profilimg,
-      namaprofilimg:user.namaprofilimg
     })
 
     if (!isPasswordCorrect) {
@@ -98,46 +93,56 @@ module.exports = {
     res.status(202).json({token})
   },
   async uploadFotoUser(req,res){
-    const fileBase64 = req.file.buffer.toString("base64");
-    const file = `data:${req.file.mimetype};base64,${fileBase64}`;
-    const tanggal = Date.now();
-    const namaFile = "Gambar User "+ tanggal;
-
-    cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaFile}, function (err, result) {
-      if (!!err) {
-        console.log(err)
-        return res.status(400).json({
-          message: "Gagal upload file!"
+    try {
+      const fileBase64 = req.file.buffer.toString("base64");
+      const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+      const tanggal = Date.now();
+      const namaFile = "Gambar User "+ tanggal;
+  
+      cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaFile}, function (err, result) {
+        if (!!err) {
+          console.log(err)
+          return res.status(400).json({
+            message: "Gagal upload file!"
+          })
+        }
+        console.log(namaFile)
+        console.log(result.url)
+        res.status(201).json({
+          message: "Upload image berhasil",
+          url: result.url,
+          namafile : namaFile,
         })
-      }
-      console.log(namaFile)
-      console.log(result.url)
-      res.status(201).json({
-        message: "Upload image berhasil",
-        url: result.url,
-        namafile : namaFile,
-      })
-    });
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+
   },
   async uploadReFotoUser(req,res){
-    const fileBase64 = req.file.buffer.toString("base64");
-    const file = `data:${req.file.mimetype};base64,${fileBase64}`;
-    const namaReup = req.body.namafilebaru
-
-    cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaReup}, function (err, result) {
-      if (!!err) {
-        console.log(err)
-        return res.status(400).json({
-          message: "Gagal upload file!"
+    try {
+      const fileBase64 = req.file.buffer.toString("base64");
+      const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+      const namaReup = req.body.namafilebaru
+  
+      cloudinary.uploader.upload(file,{public_id:"secondhand/users/"+namaReup}, function (err, result) {
+        if (!!err) {
+          console.log(err)
+          return res.status(400).json({
+            message: "Gagal upload file!"
+          })
+        }
+        console.log(result.url)
+        res.status(201).json({
+          message: "Upload image berhasil",
+          url: result.url,
+          namafile : namaReup,
         })
-      }
-      console.log(result.url)
-      res.status(201).json({
-        message: "Upload image berhasil",
-        url: result.url,
-        namafile : namaReup,
-      })
-    });
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+
   },
   async updateInfoUser(req, res){
     try {
@@ -153,12 +158,20 @@ module.exports = {
         where : {id: user_id}
       })
       return res.status(202).json('update profil berhasil')
-    } catch (error) {
-      return res.status(500);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
     }
 
   }, 
   async getUserData(req,res){
-    res.status(200).json(req.user);
+    const id_user = params.id
+    try {
+      const user = await User.findOne({
+        where : { id : id_user}
+      })
+      return res.status(200).json(user)
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
   },
 };
