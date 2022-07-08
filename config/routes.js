@@ -1,6 +1,6 @@
 const express = require("express");
 const controllers = require("../app/controllers");
-const requireAuth = require("../app/middleware/authMiddleware");
+const {requireAuth} = require("../app/middleware/authMiddleware");
 const uploadOnMemory = require("../app/middleware/uploadOnMemory");
 const apiRouter = express.Router();
 
@@ -13,7 +13,7 @@ apiRouter.post("/api/v1/register", controllers.api.v1.authController.register);
 apiRouter.post("/api/v1/updatefotouser", uploadOnMemory.single("picture"), controllers.api.v1.authController.uploadFotoUser);
 apiRouter.post("/api/v1/reupdatefotouser", uploadOnMemory.single("picture"), controllers.api.v1.authController.uploadReFotoUser);
 apiRouter.post("/api/v1/updateinfo/:id", controllers.api.v1.authController.updateInfoUser);
-apiRouter.get("/api/v1/getuser/:id",requireAuth,controllers.api.v1.authController.getUserData)
+apiRouter.get("/api/v1/getuser/:id",requireAuth,controllers.api.v1.authController.getUserData);
 
 apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
 apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);//untuk dihalaman utama

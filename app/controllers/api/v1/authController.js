@@ -164,7 +164,7 @@ module.exports = {
 
   }, 
   async getUserData(req,res){
-    const id_user = params.id
+    const id_user = req.params.id
     try {
       const user = await User.findOne({
         where : { id : id_user}

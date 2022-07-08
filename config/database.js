@@ -13,17 +13,11 @@ const {
 
 module.exports = {
   development: {
-    username: DB_USERNAME,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
+    username: "postgres",
+    password: "password",
+    database: `Backend_Secondhand_development`,
+    host: "127.0.0.1",
     dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
   },
   test: {
     username: DB_USERNAME,
