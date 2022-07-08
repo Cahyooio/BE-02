@@ -158,4 +158,7 @@ module.exports = {
     }
 
   }, 
+  async getUserData(req,res){
+    res.status(200).json(req.user);
+  },
 };
