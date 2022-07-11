@@ -167,6 +167,7 @@ module.exports = {
     const id_user = req.params.id
     try {
       const user = await User.findOne({
+        attributes: {exclude:['email','password','createdAt','updatedAt']},
         where : { id : id_user}
       })
       return res.status(200).json(user)
