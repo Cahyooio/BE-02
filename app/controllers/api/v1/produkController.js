@@ -140,9 +140,13 @@ module.exports = {
           deskripsi: req.body.deskripsi,
           kategori: req.body.kategori,
           foto1: req.body.foto1,
+          namafoto1:req.body.namafoto1,
           foto2: req.body.foto2,
+          namafoto2:req.body.namafoto2,
           foto3: req.body.foto3,
+          namafoto3:req.body.namafoto3,
           foto4: req.body.foto4,
+          namafoto4:req.body.namafoto4,
         },
         {
           where: { id: produk_id },
