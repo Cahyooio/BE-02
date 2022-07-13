@@ -120,8 +120,10 @@ module.exports = {
   async getProdukById(req, res) {
     try {
       const produk_id = req.params.id;
-      const produk = await Produk.findOne({ where: { id: produk_id } });
-      console.log(produk);
+      const produk = await Produk.findOne({ where: { id: produk_id },
+        include: 'user',
+        attributes: { exclude: ['createdAt', 'updatedAt'] }});
+    
       if (!produk) {
         return res.status(404).json("Product not found");
       }
