@@ -16,6 +16,7 @@ apiRouter.post("/api/v1/updateinfo/:id", controllers.api.v1.authController.updat
 apiRouter.get("/api/v1/getuser/:id",requireAuth,controllers.api.v1.authController.getUserData);
 
 apiRouter.get("/api/v1/getkategori",controllers.api.v1.kategoriController.getAllKategori);
+apiRouter.get("/api/v1/homekategori",controllers.api.v1.kategoriController.getKategoriBerdasarkanProduk);
 
 apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
 apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);//untuk dihalaman utama
