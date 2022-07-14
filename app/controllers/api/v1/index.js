@@ -7,10 +7,12 @@ const authController = require("./authController");
 const produkController = require("./produkController");
 const penawaranController = require("./penawaranController");
 const homeController = require("./homeController");
+const kategoriController = require("./kategoriController");
 
 module.exports = {
   authController,
   produkController,
   penawaranController,
-  homeController
+  homeController,
+  kategoriController
 };

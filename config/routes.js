@@ -15,6 +15,8 @@ apiRouter.post("/api/v1/reupdatefotouser", uploadOnMemory.single("picture"), con
 apiRouter.post("/api/v1/updateinfo/:id", controllers.api.v1.authController.updateInfoUser);
 apiRouter.get("/api/v1/getuser/:id",requireAuth,controllers.api.v1.authController.getUserData);
 
+apiRouter.get("/api/v1/getkategori",controllers.api.v1.kategoriController.getAllKategori);
+
 apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
 apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);//untuk dihalaman utama
 apiRouter.get("/api/v1/getproduk/:id", controllers.api.v1.produkController.getProdukById);//untuk per klik card produk dari hal utama/hasilpencarian
