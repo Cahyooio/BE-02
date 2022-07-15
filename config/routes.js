@@ -21,6 +21,7 @@ apiRouter.get("/api/v1/homekategori",controllers.api.v1.kategoriController.getKa
 apiRouter.post("/api/v1/createproduk", controllers.api.v1.produkController.createProduk);
 apiRouter.get("/api/v1/getallproduk", controllers.api.v1.produkController.getAllProduk);//untuk dihalaman utama
 apiRouter.get("/api/v1/getproduk/:id", controllers.api.v1.produkController.getProdukById);//untuk per klik card produk dari hal utama/hasilpencarian
+apiRouter.get("/api/v1/getproduk/:kategori", controllers.api.v1.produkController.getProdukByKategori);
 apiRouter.get("/api/v1/getprodukdijual/:penjualid", controllers.api.v1.produkController.getProdukDijual);//untuk produk yang dijual oleh user
 apiRouter.post("/api/v1/updateproduk/:id", controllers.api.v1.produkController.updateProduk);
 apiRouter.delete("/api/v1/deleteproduk/:id", controllers.api.v1.produkController.deleteProduk);

@@ -117,6 +117,23 @@ module.exports = {
         return res.status(500).json({ msg: error.message });
       }
   },
+  async getProdukByKategori(req,res){
+    try {
+      const kategori_name = req.params.kategori
+      const perkategori = await Produk.findAll(
+        {where : {
+          kategori : kategori_name
+        }}
+      )
+      if (!perkategori) {
+        return res.status(404).json(`Product dari kategori ${kategori_name} not found`);
+      }
+      return res.status(200).json(perkategori)
+      
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
   async getProdukById(req, res) {
     try {
       const produk_id = req.params.id;
