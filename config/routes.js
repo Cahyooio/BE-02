@@ -38,6 +38,8 @@ apiRouter.get("/api/v1/getpenawaran/:idproduk", controllers.api.v1.penawaranCont
 apiRouter.get("/api/v1/gettotalpenawaran/:idseller", controllers.api.v1.penawaranController.totalListPenawaran);
 apiRouter.get("/api/v1/getpenawaranbyid/:idpenawaran", controllers.api.v1.penawaranController.listPenawaranById);
 apiRouter.post("/api/v1/updatepenawaran/:idpenawaran", controllers.api.v1.penawaranController.updatePenawaran);
+apiRouter.get("/api/v1/cheksudahditawar/:kondisi", controllers.api.v1.penawaranController.produkSudahTawar);
+
 
 apiRouter.get("/api/v1/getresponpenawaran/:idbuyer", controllers.api.v1.penawaranController.responPenawaran);
 apiRouter.get("/api/v1/gettotalresponpenawaran/:idbuyer", controllers.api.v1.penawaranController.totalResponPenawaran);

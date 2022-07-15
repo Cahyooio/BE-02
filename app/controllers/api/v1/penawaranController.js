@@ -47,6 +47,23 @@ module.exports = {
             return res.status(500).json({ msg: error.message });
         }
     },
+    async produkSudahTawar(req,res){
+        try {
+            const kondisi_list = req.params.kondisi
+            const arrayKondisi = kondisi_list.split("--")
+            const sudahtawar = await Penawaran.findOne(
+                {
+                    where: {idbuyer:arrayKondisi[0], idproduk:arrayKondisi[1]}
+                }
+            )
+            if(!sudahtawar){
+                return res.status(404).json("belum ditawar")
+            }
+            return res.status(200).json("sudah ditawar");
+        } catch (error) {
+            return res.status(500).json({ msg: error.message });
+        }
+    },
     async listPenawaran(req, res) {
         try {
             const produk_id = req.params.idproduk;
