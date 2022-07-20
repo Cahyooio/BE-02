@@ -81,6 +81,20 @@ module.exports = {
             return res.status(500).json({ msg: error.message });
         }
     },
+    async listSemuaPenawaranByUser(req, res) {
+        try {
+            const user_id = req.params.iduser;
+            let penawaran = await Penawaran.findAll(
+                { where: { idseller: user_id } }
+            );
+            if (!penawaran) {
+                return res.status(404).json("Penawaran not found");
+            }
+            return res.status(200).json(penawaran);
+        } catch (error) {
+            return res.status(500).json({ msg: error.message });
+        }
+    },
     // untuk seller
     async totalListPenawaran(req, res) {
         try {

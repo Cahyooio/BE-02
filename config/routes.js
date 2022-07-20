@@ -35,6 +35,7 @@ apiRouter.post("/api/v1/refotoproduksatu", uploadOnMemory.single("picture"), con
 apiRouter.post("/api/v1/createpenawaran", controllers.api.v1.penawaranController.createPenawaran);
 apiRouter.get("/api/v1/getdiminati/:idseller", controllers.api.v1.penawaranController.listProdukDiminati);
 apiRouter.get("/api/v1/getpenawaran/:idproduk", controllers.api.v1.penawaranController.listPenawaran);
+apiRouter.get("/api/v1/getsemuapenawaran/:iduser", controllers.api.v1.penawaranController.listSemuaPenawaranByUser);
 apiRouter.get("/api/v1/gettotalpenawaran/:idseller", controllers.api.v1.penawaranController.totalListPenawaran);
 apiRouter.get("/api/v1/getpenawaranbyid/:idpenawaran", controllers.api.v1.penawaranController.listPenawaranById);
 apiRouter.post("/api/v1/updatepenawaran/:idpenawaran", controllers.api.v1.penawaranController.updatePenawaran);
