@@ -105,7 +105,7 @@ module.exports = {
             if (!totalpenawaran) {
                 return res.status(404).json("Penawaran not found");
             }
-            return res.status(200).json(totalpenawaran);
+            return res.status(200).json({total : totalpenawaran});
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
@@ -185,7 +185,7 @@ module.exports = {
             if (!respon) {
                 return res.status(404).json("There Is No Notification");
             }
-            return res.status(200).json(respon);
+            return res.status(200).json({total : respon});
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
