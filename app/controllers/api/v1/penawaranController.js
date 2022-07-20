@@ -60,9 +60,9 @@ module.exports = {
                 }
             )
             if(!sudahtawar){
-                return res.status(404).json("belum ditawar")
+                return res.status(404).json({msg : "belum ditawar"})
             }
-            return res.status(200).json("sudah ditawar");
+            return res.status(200).json({msg : "sudah ditawar"});
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
