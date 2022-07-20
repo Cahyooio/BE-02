@@ -53,7 +53,7 @@ module.exports = {
     async produkSudahTawar(req,res){
         try {
             const kondisi_list = req.params.kondisi
-            const arrayKondisi = kondisi_list.split("--")
+            const arrayKondisi = kondisi_list.split("x")
             const sudahtawar = await Penawaran.findOne(
                 {
                     where: {idbuyer:arrayKondisi[0], idproduk:arrayKondisi[1]}
