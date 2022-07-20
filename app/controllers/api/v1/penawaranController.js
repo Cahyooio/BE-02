@@ -25,6 +25,9 @@ module.exports = {
             });
             await Produk.update({
                 statusproduk: "ditawar"
+            },
+            {
+                where : {id : req.body.idproduk}
             })
             return res.status(201).json(newPenawaran);
         } catch (error) {
