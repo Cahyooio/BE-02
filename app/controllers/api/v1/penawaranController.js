@@ -85,7 +85,11 @@ module.exports = {
         try {
             const user_id = req.params.iduser;
             let penawaran = await Penawaran.findAll(
-                { where: { idseller: user_id } }
+                { where: { idseller: user_id },
+                include: 'pembeli' ,
+                attributes: {exclude :['updatedAt', 'createdAt']}
+            },
+                
             );
             if (!penawaran) {
                 return res.status(404).json("Penawaran not found");
