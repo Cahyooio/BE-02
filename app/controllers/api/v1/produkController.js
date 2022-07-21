@@ -107,7 +107,7 @@ module.exports = {
   async getProdukDijual(req, res) {
     try {
         const penjual_id = req.params.penjualid;
-        const produk = await Produk.findOne({ where: { idseller: penjual_id } });
+        const produk = await Produk.findAll({ where: { idseller: penjual_id } });
         console.log(produk);
         if (!produk) {
           return res.status(404).json("Product not found");
