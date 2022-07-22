@@ -122,7 +122,7 @@ module.exports = {
             const idpenawaran = req.params.idpenawaran;
             let penawaran = await Penawaran.findOne(
                 { where: { id: idpenawaran } ,
-                include: 'produk' ,
+                include: 'pembeli' ,
                 attributes: {exclude :['updatedAt', 'createdAt']}
         });
             if (!penawaran) {
