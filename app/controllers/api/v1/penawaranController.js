@@ -1,5 +1,6 @@
 const { Penawaran,Produk } = require('../../../models');
 const Sequelize = require('sequelize')
+const { Op } = require("sequelize");
 
 module.exports = {
     //dari buyer untuk seller
@@ -42,7 +43,10 @@ module.exports = {
             const idpenjual = req.params.idseller;
             let diminati = await Produk.findAll(
                 {
-                    where : { idseller: idpenjual, statusproduk:"ditawar" }
+                    where : { idseller: idpenjual, [Op.or]:[
+                        {statusproduk:"ditawar"},
+                        {statusproduk:"reserved"},
+                    ] }
                 }
             )
             return res.status(200).json(diminati);
@@ -171,7 +175,6 @@ module.exports = {
             const buyer_id = req.params.idbuyer;
             const respon= await Penawaran.findAll({
                 where: {idbuyer: buyer_id },
-                attributes:['statustawar'],
             })
             if (!respon) {
                 return res.status(404).json("There Is No Notification");
