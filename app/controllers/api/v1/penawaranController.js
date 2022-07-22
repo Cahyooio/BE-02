@@ -60,7 +60,10 @@ module.exports = {
             const arrayKondisi = kondisi_list.split("--")
             const sudahtawar = await Penawaran.findOne(
                 {
-                    where: {idbuyer:arrayKondisi[0], idproduk:arrayKondisi[1]}
+                    where: {idbuyer:arrayKondisi[0], idproduk:arrayKondisi[1],[Op.or]:[
+                        {statustawar: "menawar"},
+                        {statustawar: "diterima"},
+                    ]}
                 }
             )
             if(!sudahtawar){
