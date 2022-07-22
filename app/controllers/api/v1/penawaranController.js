@@ -91,7 +91,7 @@ module.exports = {
         try {
             const user_id = req.params.iduser;
             let penawaran = await Penawaran.findAll(
-                { where: { idseller: user_id },
+                { where: { idseller: user_id , statustawar:'menawar'},
                 include: 'pembeli' ,
                 attributes: {exclude :['updatedAt', 'createdAt']}
             },
@@ -125,7 +125,7 @@ module.exports = {
         try {
             const idpenawaran = req.params.idpenawaran;
             let penawaran = await Penawaran.findOne(
-                { where: { id: idpenawaran } ,
+                { where: { id: idpenawaran,statustawar:'menawar' } ,
                 include: 'pembeli' ,
                 attributes: {exclude :['updatedAt', 'createdAt']}
         });
