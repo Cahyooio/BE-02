@@ -113,7 +113,7 @@ module.exports = {
                 { where: { idseller: idpenjual } }
             );
             if (!totalpenawaran) {
-                return res.status(404).json("Penawaran not found");
+                return res.status(404).json({total : 0});
             }
             return res.status(200).json({total : totalpenawaran});
         } catch (error) {
@@ -192,7 +192,7 @@ module.exports = {
                 where: {idbuyer: buyer_id },
             })
             if (!respon) {
-                return res.status(404).json("There Is No Notification");
+                return res.status(404).json({total : 0});
             }
             return res.status(200).json({total : respon});
         } catch (error) {
