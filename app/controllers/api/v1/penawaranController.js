@@ -116,9 +116,7 @@ module.exports = {
         try {
             const idpenjual = req.params.idseller;
             let totalpenawaran = await Penawaran.count(
-                { where: { idseller: idpenjual },[Op.or]:[
-                    {statustawar: "menawar"},
-                ] }
+                {where: { idseller: idpenjual ,statustawar: "menawar"}}
             );
             if (!totalpenawaran) {
                 return res.status(404).json({total : 0});
