@@ -75,7 +75,10 @@ module.exports = {
         try {
             const produk_id = req.params.idproduk;
             let penawaran = await Penawaran.findAll(
-                { where: { idproduk: produk_id },
+                { where: { idproduk: produk_id , [Op.or]:[
+                    {statustawar: "menawar"},
+                    {statustawar: "diterima"},
+                ]},
                 include: 'pembeli' ,
                 attributes: {exclude :['updatedAt', 'createdAt']} }
             );
