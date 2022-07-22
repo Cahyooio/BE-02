@@ -198,5 +198,16 @@ module.exports = {
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
+    },
+    async deletePenawaranById(req,res){
+        try {
+            const penawaran_id = req.params.idpenawaran
+            await Penawaran.destroy({
+                where : {id:penawaran_id}
+            })
+            return res.status(204).json({msg: "berhasil dihapus"})
+        } catch (error) {
+            return res.status(422).json({ msg: error.message });
+        }
     }
 }
