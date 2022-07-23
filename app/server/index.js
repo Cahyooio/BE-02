@@ -16,13 +16,13 @@ dotenv.config();
 const app = express();
 
 //use cors, ganti halaman heroku ketika udah deploy
-const corsOptions ={
-    origin:'https://secondhand-kelompok2.vercel.app/', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
+// const corsOptions ={
+//     origin:'https://secondhand-kelompok2.vercel.app/', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
 app.set("trust proxy", 1);
-app.use(cors(corsOptions));
+app.use(cors());
 // app.use(session({
 //     name:"secondhand_kel2",
 //     secret:"bennysakawnganublablaehehkimochi",
