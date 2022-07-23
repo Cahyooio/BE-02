@@ -1,5 +1,6 @@
 const { kategori,Produk } = require("../../../models");
 const Sequelize = require('sequelize')
+const { Op } = require("sequelize");
 
 module.exports = {
     async getAllKategori(req,res){
@@ -17,6 +18,7 @@ module.exports = {
         try {
             let homekategori = await Produk.findAll(
                 {
+                    where : {[Op.or]: [{ statusproduk: "ditawar" }, { statusproduk: null }],},
                     attributes : [
                         Sequelize.fn('DISTINCT', Sequelize.col('kategori')),'kategori'
                     ]
