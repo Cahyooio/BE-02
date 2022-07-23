@@ -1,4 +1,4 @@
-const { Produk } = require("../../../models");
+const { Penawaran, Produk } = require("../../../models");
 const cloudinary = require("../../../../config/cloudinary");
 const { Op } = require("sequelize");
 
@@ -215,6 +215,10 @@ module.exports = {
       },{
         where : { id : produk_id }
       })
+      await Penawaran.destroy({
+        where : {idproduk : produk_id,statustawar:'diterima'}
+      })
+      return res.status(202).json({msg:"berhasil membatalkan tranksaksi"})
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }
