@@ -95,7 +95,9 @@ module.exports = {
   },
   async getAllProduk(req, res) {
     try {
-      let produk = await Produk.findAll();
+      let produk = await Produk.findAll(
+        {where : {statusproduk : {[Op.ne]: 'reserved'}} }
+      );
       if (!produk) {
         return res.status(404).json("Product not found");
       }
