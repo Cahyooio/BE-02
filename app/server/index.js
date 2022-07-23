@@ -17,7 +17,7 @@ const app = express();
 
 //use cors, ganti halaman heroku ketika udah deploy
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'http://localhost:3000'||'https://secondhand-kelompok2.vercel.app/', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
