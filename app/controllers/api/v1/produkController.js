@@ -96,7 +96,7 @@ module.exports = {
   async getAllProduk(req, res) {
     try {
       let produk = await Produk.findAll(
-        {where : {statusproduk : {[Op.ne]: 'reserved'}} }
+        {where : {[Op.or]: [{ statusproduk: "ditawar" }, { statusproduk: null }]} }
       );
       if (!produk) {
         return res.status(404).json("Product not found");
@@ -124,7 +124,8 @@ module.exports = {
       const kategori_name = req.params.kategori
       const perkategori = await Produk.findAll(
         {where : {
-          kategori : kategori_name
+          kategori : kategori_name,
+          [Op.or]: [{ statusproduk: "ditawar" }, { statusproduk: null }],
         }}
       )
       if (!perkategori) {
