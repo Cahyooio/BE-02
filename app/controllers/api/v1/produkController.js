@@ -142,7 +142,10 @@ module.exports = {
       const produk_id = req.params.id;
       const produk = await Produk.findOne({ where: { id: produk_id },
         include: 'user',
-        attributes: { exclude: ['createdAt', 'updatedAt'] }});
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        paranoid: false,}
+        )
+        ;
       if (!produk) {
         return res.status(404).json("Product not found");
       }
