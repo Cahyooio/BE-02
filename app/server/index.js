@@ -17,12 +17,23 @@ const app = express();
 
 //use cors, ganti halaman heroku ketika udah deploy
 // const corsOptions ={
-//     origin:'https://secondhand-kelompok2.vercel.app/', 
+//     origin:'http://localhost:3000'||'https://secondhand-kelompok2.vercel.app/', 
 //     credentials:true,            //access-control-allow-credentials:true
 //     optionSuccessStatus:200
 // }
+var whitelist = ['http://localhost:3000', 'https://secondhand-kelompok2.vercel.app']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 app.set("trust proxy", 1);
-app.use(cors());
+app.use(cors(corsOptions));
 // app.use(session({
 //     name:"secondhand_kel2",
 //     secret:"bennysakawnganublablaehehkimochi",
